@@ -1,0 +1,57 @@
+{
+  "clusters": {
+    "0": {
+      "count": 319283,
+      "share_pct": 47.090984981113934,
+      "mean_features": {
+        "VehPower": 6.6748495848510565,
+        "VehAge": 3.1843286363508234,
+        "DrivAge": 50.819495557232926,
+        "BonusMalus": 52.3042504611896,
+        "Density": 2117.71152551185
+      },
+      "mean_claim_nb": 0.05412439747809936,
+      "mean_exposure": 0.516269066477589,
+      "claim_frequency_per_year": 0.10483757597056977
+    },
+    "1": {
+      "count": 205187,
+      "share_pct": 30.262989057731932,
+      "mean_features": {
+        "VehPower": 6.407564806737269,
+        "VehAge": 12.743390175790864,
+        "DrivAge": 47.59636331736416,
+        "BonusMalus": 53.10072275534025,
+        "Density": 792.445120792253
+      },
+      "mean_claim_nb": 0.04387217513780113,
+      "mean_exposure": 0.634318531189923,
+      "claim_frequency_per_year": 0.06916426523989608
+    },
+    "2": {
+      "count": 153543,
+      "share_pct": 22.646025961154137,
+      "mean_features": {
+        "VehPower": 6.0595989397107,
+        "VehAge": 7.454739063324281,
+        "DrivAge": 31.633093009775763,
+        "BonusMalus": 84.16950951850622,
+        "Density": 2452.3225806451615
+      },
+      "mean_claim_nb": 0.06394951251440964,
+      "mean_exposure": 0.41362740503538264,
+      "claim_frequency_per_year": 0.15460656556095276
+    }
+  },
+  "population": {
+    "count": 678013,
+    "mean_features": {
+      "VehPower": 6.454631400872844,
+      "VehAge": 7.044264637993667,
+      "DrivAge": 45.49912169825652,
+      "BonusMalus": 59.76150162312522,
+      "Density": 1792.4224048801425
+    },
+    "claim_frequency_per_year": 0.10070308464047067
+  }
+}

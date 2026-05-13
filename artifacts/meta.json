@@ -1,0 +1,28 @@
+{
+  "n_clusters": 3,
+  "random_state": 42,
+  "feature_cols": [
+    "VehPower",
+    "VehAge",
+    "DrivAge",
+    "BonusMalus",
+    "Density"
+  ],
+  "scaled_cols": [
+    "VehPower",
+    "VehAge",
+    "DrivAge",
+    "BonusMalus",
+    "Density_log"
+  ],
+  "pca_components": 5,
+  "explained_variance_ratio": [
+    0.30583497557193234,
+    0.22107092311968893,
+    0.1985723266795711,
+    0.17272554128936835,
+    0.10179623333943931
+  ],
+  "n_policies": 678013,
+  "source_csv": "freMTPL2freq.csv"
+}

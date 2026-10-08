@@ -1,10 +1,10 @@
 """
-app.py — Gradio demo for the Insurance Risk Segmentation Space.
+app.py: Gradio demo for the Insurance Risk Segmentation Space.
 
 Three tabs over a pre-fit StandardScaler + PCA + KMeans(K=3) pipeline:
-1. Score a Policy — enter (or randomly draw) feature values, see the cluster.
-2. Cluster Profiles — at-a-glance overview of the three risk groups.
-3. Sample Distribution — draw N random policies and see the cluster split.
+1. Score a Policy: enter (or randomly draw) feature values, see the cluster.
+2. Cluster Profiles: at-a-glance overview of the three risk groups.
+3. Sample Distribution: draw N random policies and see the cluster split.
 """
 
 import json
@@ -36,15 +36,15 @@ N_CLUSTERS = meta["n_clusters"]
 EV = meta["explained_variance_ratio"]
 
 CLUSTER_LABELS = {
-    0: "Cluster 0 — Mature urban / newer car",
-    1: "Cluster 1 — Rural / older car (low risk)",
-    2: "Cluster 2 — Young urban / bonus-malus penalty (high risk)",
+    0: "Cluster 0: Mature urban / newer car",
+    1: "Cluster 1: Rural / older car (low risk)",
+    2: "Cluster 2: Young urban / bonus-malus penalty (high risk)",
 }
 # Distinct color per cluster, used consistently across all plots.
 CLUSTER_COLORS = {0: "#6366f1", 1: "#10b981", 2: "#ef4444"}
 
 POP_FREQ = profiles["population"]["claim_frequency_per_year"]
-print(f"Loaded — {len(df):,} policies, K={N_CLUSTERS}, overall claim freq={POP_FREQ:.4f}")
+print(f"Loaded: {len(df):,} policies, K={N_CLUSTERS}, overall claim freq={POP_FREQ:.4f}")
 
 
 # ───────────────────────── core scoring ─────────────────────────
@@ -109,7 +109,7 @@ def tab1_predict(VehPower, VehAge, DrivAge, BonusMalus, Density):
                edgecolor="black", linewidth=1.5, zorder=10, label="This policy")
     ax.set_xlabel(f"PC1 ({EV[0] * 100:.1f}% variance)")
     ax.set_ylabel(f"PC2 ({EV[1] * 100:.1f}% variance)")
-    ax.set_title(f"PCA(1, 2) — policy plotted against a 5 000-policy subsample")
+    ax.set_title(f"PCA(1, 2): policy plotted against a 5 000-policy subsample")
     ax.legend(loc="upper right", fontsize=9, framealpha=0.9)
     ax.grid(True, alpha=0.3)
     fig.tight_layout()
@@ -147,7 +147,7 @@ def _tab2_render():
     md += (
         f"---\n**Overall:** {pop['count']:,} policies &nbsp; · &nbsp; "
         f"**Claim freq: {pop['claim_frequency_per_year'] * 100:.2f}%/year**\n\n"
-        "The three clusters separate cleanly along the actuarial gradient — the rural / older-car group has "
+        "The three clusters separate cleanly along the actuarial gradient. The rural / older-car group has "
         "claim rates well below the book average, the young urban / penalty group well above. The middle "
         "group (mature urban / newer car) is close to the overall mean. Below is the centroid of each cluster, "
         "z-scored so features are visually comparable on the same scale."
@@ -226,7 +226,7 @@ def tab3_draw(n_samples):
         total_claims = float(sample.loc[c_mask, "ClaimNb"].sum())
         freq = total_claims / total_exp if total_exp > 0 else 0
         summary_lines.append(
-            f"- Cluster {c}: **{n_c}** policies ({n_c / n * 100:.1f}%) — "
+            f"- Cluster {c}: **{n_c}** policies ({n_c / n * 100:.1f}%), "
             f"observed claim freq in sample: **{freq * 100:.2f}%/year**"
         )
     return plot_path, table, "\n".join(summary_lines)
@@ -235,7 +235,7 @@ def tab3_draw(n_samples):
 # ───────────────────────── Gradio UI ─────────────────────────
 with gr.Blocks(theme=gr.themes.Soft(), title="Insurance Risk Segmentation") as demo:
     gr.Markdown(
-        "# Insurance Risk Segmentation — K-Means on French MTPL\n"
+        "# Insurance Risk Segmentation: K-Means on French MTPL\n"
         "Unsupervised segmentation of 678 013 French auto policies into three actuarially distinct "
         "risk groups. Switch between tabs to score a single policy, browse the cluster profiles, "
         "or draw random samples from the bundled dataset."
@@ -247,7 +247,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Insurance Risk Segmentation") as d
             with gr.Row():
                 with gr.Column(scale=1):
                     gr.Markdown("**Policy features**")
-                    veh_power = gr.Number(value=6, label="VehPower (rated power, 4–15)", precision=0)
+                    veh_power = gr.Number(value=6, label="VehPower (rated power, 4-15)", precision=0)
                     veh_age = gr.Number(value=7, label="VehAge (years)", precision=0)
                     driv_age = gr.Number(value=45, label="DrivAge (years)", precision=0)
                     bonus_malus = gr.Number(value=60, label="BonusMalus (50 = clean, 100+ = penalty)", precision=0)
@@ -257,7 +257,7 @@ with gr.Blocks(theme=gr.themes.Soft(), title="Insurance Risk Segmentation") as d
                         pred_btn = gr.Button("Predict cluster", variant="primary")
                 with gr.Column(scale=2):
                     t1_md = gr.Markdown()
-                    t1_plot = gr.Image(label="PCA(1, 2) — policy in cluster space", type="filepath")
+                    t1_plot = gr.Image(label="PCA(1, 2): policy in cluster space", type="filepath")
 
             rnd_btn.click(
                 tab1_random, inputs=[],

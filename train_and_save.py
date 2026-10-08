@@ -25,7 +25,7 @@ SOURCE_CSV = Path(
     r"C:\Users\khali\iCloudDrive\Workspace\UNIVERSITIES\KRISTIANIA\Y1\Smart_Analysis_Decision_Making\Assignments\freMTPL2freq.csv"
 )
 FEATURE_COLS = ["VehPower", "VehAge", "DrivAge", "BonusMalus", "Density"]
-# Density is log-transformed before scaling — names in scaled space:
+# Density is log-transformed before scaling. Names in scaled space:
 SCALED_COLS = ["VehPower", "VehAge", "DrivAge", "BonusMalus", "Density_log"]
 N_CLUSTERS = 3
 SEED = 42
@@ -106,7 +106,7 @@ joblib.dump(scaler, ART / "scaler.joblib")
 joblib.dump(pca, ART / "pca.joblib")
 joblib.dump(kmeans, ART / "kmeans.joblib")
 
-# Bundled enriched data — original columns + cluster + PC1 + PC2
+# Bundled enriched data: original columns + cluster + PC1 + PC2
 df_out = df.copy()
 df_out.to_csv(ART / "freMTPL2freq_with_clusters.csv", index=False)
 
